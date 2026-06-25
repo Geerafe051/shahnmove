@@ -25,15 +25,20 @@ const revealObserver = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
 
-const form = document.querySelector('#audit-form');
-const status = form?.querySelector('.form-status');
+document.querySelectorAll('.lead-form').forEach((form) => {
+  const status = form.querySelector('.form-status');
 
-form?.addEventListener('submit', (event) => {
-  event.preventDefault();
-  const data = Object.fromEntries(new FormData(form).entries());
-  localStorage.setItem('shahnmove-audit-request', JSON.stringify({ ...data, createdAt: new Date().toISOString() }));
-  status.textContent = 'Thank you — your request is ready. We will contact you shortly.';
-  form.reset();
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const data = Object.fromEntries(new FormData(form).entries());
+    const leads = JSON.parse(localStorage.getItem('shahnmove-pilot-requests') || '[]');
+
+    leads.push({ ...data, source: form.id, createdAt: new Date().toISOString() });
+    localStorage.setItem('shahnmove-pilot-requests', JSON.stringify(leads));
+
+    status.textContent = 'Thank you. We will contact you to discuss a focused pilot.';
+    form.reset();
+  });
 });
 
 document.querySelector('#year').textContent = new Date().getFullYear();
