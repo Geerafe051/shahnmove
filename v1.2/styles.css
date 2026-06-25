@@ -203,6 +203,11 @@ h1, h2, h3, p { margin-top: 0; }
   white-space: nowrap;
 }
 .button:hover { transform: translateY(-2px); }
+.button:disabled {
+  cursor: wait;
+  opacity: .72;
+  transform: none;
+}
 .button-primary {
   background: var(--green);
   color: var(--white);
