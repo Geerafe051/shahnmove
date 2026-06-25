@@ -222,6 +222,9 @@ img { display: block; max-width: 100%; }
   color: var(--white);
 }
 .button-primary:hover { background: #17ba88; }
+.lead-form .button {
+  margin-top: 26px;
+}
 .form-status {
   grid-column: 1 / -1;
   min-height: 18px;
@@ -641,6 +644,9 @@ footer small {
   .hero-lede { font-size: 17px; }
   .hero-form, .contact-form {
     grid-template-columns: 1fr;
+  }
+  .lead-form .button {
+    margin-top: 0;
   }
   .hero-panel {
     padding: 19px;
